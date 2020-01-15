@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SignupActivity"
+    android:background="@color/colorPrimary">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+
+                <ImageView
+                    android:id="@+id/logo_2"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:src="@mipmap/money_logo"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="100dp"/>
+                <TextView
+                    android:id="@+id/title_3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="e - Payment"
+                    android:textAlignment="center"
+                    android:textColor="@color/blue"
+                    android:layout_below="@+id/logo_2"
+                    android:textSize="40sp"
+                    android:layout_marginTop="-12dp"/>
+
+                <TextView
+                    android:id="@+id/title_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textAlignment="center"
+                    android:textColor="#FFFFFF"
+                    android:textSize="30sp"
+                    android:layout_marginTop="80dp"
+                    android:layout_below="@+id/logo_2"
+                    android:padding="20dp"/>
+                <EditText
+                    android:id="@+id/str_username"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/text_top"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginRight="50dp"
+                    android:layout_marginTop="10dp"
+                    android:hint="Username"
+                    android:layout_below="@id/title_2"
+                    android:paddingLeft="20dp"/>
+                <EditText
+                    android:id="@+id/str_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/text_bottom"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginRight="50dp"
+                    android:layout_below="@+id/str_username"
+                    android:hint="Password"
+                    android:inputType="textPassword"
+                    android:layout_marginTop="0.5dp"
+                    android:paddingLeft="20dp"/>
+
+                <Button
+                    android:id="@+id/btn_signup"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="47dp"
+                    android:layout_marginRight="47dp"
+                    android:layout_below="@id/str_password"
+                    android:text="SIGN UP"
+                    android:textColor="@color/colorPrimaryDark"/>
+                <TextView
+                    android:id="@+id/text_question"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="HAVE ACCOUNT ? LOGIN"
+                    android:layout_below="@id/btn_signup"
+                    android:textAlignment="center"
+                    android:textColor="#FFFFFF"/>
+
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
+
+
+</RelativeLayout>
