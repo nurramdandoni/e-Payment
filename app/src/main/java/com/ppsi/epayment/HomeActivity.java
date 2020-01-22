@@ -11,6 +11,8 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class HomeActivity extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
@@ -18,6 +20,7 @@ public class HomeActivity extends AppCompatActivity {
     private final TransactionFragment transactionFragment = new TransactionFragment();
     private final HistoryFragment historyFragment = new HistoryFragment();
     private final AccountFragment accountFragment = new AccountFragment();
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +37,10 @@ public class HomeActivity extends AppCompatActivity {
                     case R.id.item_home:
                         loadFragment(homeFragment);
                         Toast.makeText(getApplicationContext(), "Ini Home", Toast.LENGTH_LONG).show();
+
+//                        DatabaseReference myRef = database.getReference("message");
+//
+//                        myRef.setValue("Hello, World!");
                         return true;
                     case R.id.item_transaksi:
                         loadFragment(transactionFragment);
