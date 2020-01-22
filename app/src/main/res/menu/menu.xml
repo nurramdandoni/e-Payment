@@ -5,11 +5,11 @@
         android:icon="@drawable/home_ico"
         android:title="Home" />
     <item
-        android:id="@+id/item_feed"
+        android:id="@+id/item_transaksi"
         android:icon="@drawable/transaksi_ico"
         android:title="Transaction" />
     <item
-        android:id="@+id/item_setting"
+        android:id="@+id/item_history"
         android:icon="@drawable/riwayat_ico"
         android:title="History" />
     <item
