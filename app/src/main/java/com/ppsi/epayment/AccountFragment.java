@@ -20,9 +20,9 @@ import com.ppsi.epayment.model.Account;
 import static android.content.ContentValues.TAG;
 
 public class AccountFragment extends Fragment {
-    private TextView txtBalance;
+    private TextView txtBalance,txtName,txtNoacc,txtEmail,txtTelp,txtType,txtVerify,txtDate;
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
-    private DatabaseReference myRef = database.getReference("E895330802566");
+    private DatabaseReference myRef = database.getReference("account").child("0");
 
 
     @Override
@@ -32,15 +32,37 @@ public class AccountFragment extends Fragment {
         View viewsend = inflater.inflate(R.layout.fragment_account, container, false);
 
         txtBalance = viewsend.findViewById(R.id.balance_user);
+        txtNoacc = viewsend.findViewById(R.id.no_account_user);
+        txtName = viewsend.findViewById(R.id.nama_user);
+        txtEmail = viewsend.findViewById(R.id.email_user);
+        txtTelp = viewsend.findViewById(R.id.tel_user);
+        txtType = viewsend.findViewById(R.id.type_user);
+        txtVerify = viewsend.findViewById(R.id.verify_user);
+        txtDate = viewsend.findViewById(R.id.reg_user);
 
-        txtBalance.setText("-");
+
 
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 String balance = dataSnapshot.child("balance").getValue(String.class);
+                String email = dataSnapshot.child("email").getValue(String.class);
+                String nama_lengkap = dataSnapshot.child("nama_lengkap").getValue(String.class);
+                String no_account = dataSnapshot.child("no_account").getValue(String.class);
+                String no_telp = dataSnapshot.child("no_telp").getValue(String.class);
+                String registered = dataSnapshot.child("registered").getValue(String.class);
+                String type = dataSnapshot.child("type").getValue(String.class);
+                String verify = dataSnapshot.child("verify").getValue(String.class);
+
                 txtBalance.setText(balance);
+                txtNoacc.setText(no_account);
+                txtName.setText(nama_lengkap);
+                txtEmail.setText(email);
+                txtTelp.setText(no_telp);
+                txtType.setText(type);
+                txtVerify.setText(verify);
+                txtDate.setText(registered);
                 Log.d(TAG, "Value is: " + balance);
 
             }
