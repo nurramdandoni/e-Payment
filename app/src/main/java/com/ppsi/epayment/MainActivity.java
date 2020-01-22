@@ -6,7 +6,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 public class MainActivity extends AppCompatActivity {
+    private BottomNavigationView bottomNavigationView;
+    private final HomeFragment homeFragment = new HomeFragment();
+    private final TransactionFragment transactionFragment = new TransactionFragment();
+    private final HistoryFragment historyFragment = new HistoryFragment();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,4 +30,6 @@ public class MainActivity extends AppCompatActivity {
             }
         },2000);
     }
+
+
 }
