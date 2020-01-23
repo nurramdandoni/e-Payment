@@ -1,6 +1,7 @@
 package com.ppsi.epayment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -38,6 +39,8 @@ public class TransactionFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getContext(),"Menu Send Clicked",Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(getContext(),ScanActivity.class);
+                startActivity(i);
             }
         });
 
