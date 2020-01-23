@@ -100,7 +100,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Nomor Account"
+                        android:text="No. Account"
                         android:textSize="12sp"
                         android:paddingLeft="35dp"/>
                 </LinearLayout>
@@ -138,7 +138,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Nama Lengkap"
+                        android:text="Sure Name"
                         android:textSize="12sp"
                         android:paddingLeft="35dp"/>
                 </LinearLayout>
@@ -175,7 +175,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Alamat Email"
+                        android:text="Email Address"
                         android:textSize="12sp"
                         android:paddingLeft="35dp"/>
                 </LinearLayout>
