@@ -28,6 +28,7 @@
                 android:rowCount="2"
                 android:padding="20dp">
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/cardSend"
                     android:layout_width="0dp"
                     android:layout_height="140dp"
                     android:layout_columnWeight="1"
@@ -49,6 +50,7 @@
                             />
 
                         <TextView
+                            android:id="@+id/txtSend"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:text="SEND"
@@ -78,6 +80,7 @@
                             />
 
                         <TextView
+                            android:id="@+id/txtReceive"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:text="RECEIVE"
@@ -108,6 +111,7 @@
                             />
 
                         <TextView
+                            android:id="@+id/txtDeposit"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:text="DEPOSIT"
@@ -138,6 +142,7 @@
                             />
 
                         <TextView
+                            android:id="@+id/txtWithdrawal"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:text="WITHDRAWAL"
