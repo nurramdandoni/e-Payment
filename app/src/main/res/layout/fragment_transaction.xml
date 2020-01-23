@@ -32,10 +32,13 @@
                     android:layout_height="140dp"
                     android:layout_columnWeight="1"
                     android:layout_margin="10dp"
-                    android:layout_marginBottom="20dp">
+                    android:layout_marginBottom="20dp"
+                    android:clickable="true">
                     <RelativeLayout
+                        android:id="@+id/btnSend"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:background="?attr/selectableItemBackground">
                         <ImageView
                             android:id="@+id/card1"
                             android:layout_width="80dp"
@@ -58,10 +61,13 @@
                     android:layout_height="140dp"
                     android:layout_columnWeight="1"
                     android:layout_margin="10dp"
-                    android:layout_marginBottom="20dp">
+                    android:layout_marginBottom="20dp"
+                    android:clickable="true">
                     <RelativeLayout
+                        android:id="@+id/btnReceive"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:background="?attr/selectableItemBackground">
                         <ImageView
                             android:id="@+id/card2"
                             android:layout_width="80dp"
@@ -85,10 +91,13 @@
                     android:layout_height="140dp"
                     android:layout_columnWeight="1"
                     android:layout_margin="10dp"
-                    android:layout_marginBottom="20dp">
+                    android:layout_marginBottom="20dp"
+                    android:clickable="true">
                     <RelativeLayout
+                        android:id="@+id/btnDeposit"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:background="?attr/selectableItemBackground">
                         <ImageView
                             android:id="@+id/card3"
                             android:layout_width="80dp"
@@ -112,10 +121,13 @@
                     android:layout_height="140dp"
                     android:layout_columnWeight="1"
                     android:layout_margin="10dp"
-                    android:layout_marginBottom="20dp">
+                    android:layout_marginBottom="20dp"
+                    android:clickable="true">
                     <RelativeLayout
+                        android:id="@+id/btnWithdrawal"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:background="?attr/selectableItemBackground">
                         <ImageView
                             android:id="@+id/card4"
                             android:layout_width="80dp"
