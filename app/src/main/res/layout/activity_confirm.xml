@@ -52,7 +52,7 @@
                 android:id="@+id/lblSendMoney"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="To No. Account"
+                android:text="No. Account"
                 android:layout_marginTop="50dp"
                 android:layout_marginBottom="20dp"
                 android:layout_marginLeft="30dp"/>
