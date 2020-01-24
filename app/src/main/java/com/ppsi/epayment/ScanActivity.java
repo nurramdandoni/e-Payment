@@ -47,9 +47,14 @@ public class ScanActivity extends AppCompatActivity {
 //                        hasil scan alihkan datanya ke konfirmasi transfer -> opsi batal/ konfirmasi ->
 //                        jika ya insert firebase, jika gagal kembali ke traqnsaction fragment
                         Toast.makeText(ScanActivity.this, result.getText(), Toast.LENGTH_SHORT).show();
-                        String acc = result.getText();
+                        String strScan = result.getText();
+                        String[] separated = strScan.split("/");
+                        String valid = separated[0];
+                        String no_acc = separated[1];
+                        String value_send = separated[2];
                         Intent i = new Intent(getApplicationContext(),ConfirmActivity.class);
-                        i.putExtra("acc",acc);
+                        i.putExtra("acc",no_acc);
+                        i.putExtra("value",value_send);
                         startActivity(i);
                     }
                 });
