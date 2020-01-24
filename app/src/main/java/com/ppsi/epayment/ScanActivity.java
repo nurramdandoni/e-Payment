@@ -6,6 +6,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
@@ -43,7 +44,13 @@ public class ScanActivity extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
+//                        hasil scan alihkan datanya ke konfirmasi transfer -> opsi batal/ konfirmasi ->
+//                        jika ya insert firebase, jika gagal kembali ke traqnsaction fragment
                         Toast.makeText(ScanActivity.this, result.getText(), Toast.LENGTH_SHORT).show();
+                        String acc = result.getText();
+                        Intent i = new Intent(getApplicationContext(),ConfirmActivity.class);
+                        i.putExtra("acc",acc);
+                        startActivity(i);
                     }
                 });
             }
