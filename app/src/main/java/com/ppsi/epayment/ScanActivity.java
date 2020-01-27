@@ -15,9 +15,17 @@ import android.widget.Toast;
 import com.budiyev.android.codescanner.CodeScanner;
 import com.budiyev.android.codescanner.CodeScannerView;
 import com.budiyev.android.codescanner.DecodeCallback;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.zxing.Result;
 
 public class ScanActivity extends AppCompatActivity {
+
+    private FirebaseDatabase database = FirebaseDatabase.getInstance();
+    private DatabaseReference myRef = database.getReference("account");
 
     private CodeScanner mCodeScanner;
 
@@ -44,18 +52,42 @@ public class ScanActivity extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-//                        hasil scan alihkan datanya ke konfirmasi transfer -> opsi batal/ konfirmasi ->
-//                        jika ya insert firebase, jika gagal kembali ke traqnsaction fragment
-                        Toast.makeText(ScanActivity.this, result.getText(), Toast.LENGTH_SHORT).show();
-                        String strScan = result.getText();
-                        String[] separated = strScan.split("/");
-                        String valid = separated[0];
-                        String no_acc = separated[1];
-                        String value_send = separated[2];
-                        Intent i = new Intent(getApplicationContext(),ConfirmActivity.class);
-                        i.putExtra("acc",no_acc);
-                        i.putExtra("value",value_send);
-                        startActivity(i);
+                        myRef.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                String dataAccount = String.valueOf(dataSnapshot.getChildrenCount());
+                                int jumlahAccount = Integer.valueOf(dataAccount);
+                                for (int i = 0; i < jumlahAccount; i++) {
+                                    String child = String.valueOf(i);
+
+                                    String u = dataSnapshot.child(child).child("no_account").getValue(String.class);
+
+//                          hasil scan alihkan datanya ke konfirmasi transfer -> opsi batal/ konfirmasi ->
+//                          jika ya insert firebase, jika gagal kembali ke traqnsaction fragment
+//                                        Toast.makeText(ScanActivity.this, result.getText(), Toast.LENGTH_SHORT).show();
+                                        String strScan = result.getText();
+                                        String[] separated = strScan.split("/");
+                                        String valid = separated[0];
+                                        String no_acc = separated[1];
+                                        String value_send = separated[2];
+                                    if(u.equals(no_acc)) {
+                                        Intent j = new Intent(getApplicationContext(), ConfirmActivity.class);
+                                        j.putExtra("acc", no_acc);
+                                        j.putExtra("index_send", child);
+                                        j.putExtra("value", value_send);
+                                        startActivity(j);
+                                    }else{
+                                        Toast.makeText(ScanActivity.this,"Failed!", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+
                     }
                 });
             }
