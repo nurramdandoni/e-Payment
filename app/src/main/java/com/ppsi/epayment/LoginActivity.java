@@ -21,6 +21,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference myRef = database.getReference("account");
+    private String fusername,fpassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,53 +31,61 @@ public class LoginActivity extends AppCompatActivity {
         final EditText username = findViewById(R.id.str_username);
         final EditText password = findViewById(R.id.str_password);
 
-        final String fusername,fpassword;
+//        private String fusername,fpassword;
 
         Button b_login = findViewById(R.id.btn_login);
         TextView signUp = findViewById(R.id.text_question);
 
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                String dataAccount = String.valueOf(dataSnapshot.child("account").getChildrenCount());
-
-                int jumlahAccount = Integer.valueOf(dataAccount);
-                for (int i = 0; i < jumlahAccount; i++){
-                    String child = i;
-
-                    String u = String.valueOf(dataSnapshot.child("account").child(child).child("username").getValue());
-                    String p = String.valueOf(dataSnapshot.child("account").child(child).child("password").getValue());
-
-                    if(u.toString().equals(username.getText().toString() && p.toString().equals(password.getText().toString()))){
-                        fusername = u;
-                        fpassword = p;
-                    }else{
-
-                    }
-                }
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        })
 
         b_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                if(username.getText().length()==0){
-                    Toast.makeText(getApplicationContext(),"Username tidak boleh Kosong",Toast.LENGTH_LONG).show();
-                }else if(password.getText().length()==0){
-                    Toast.makeText(getApplicationContext(),"Password tidak boleh Kosong",Toast.LENGTH_LONG).show();
-                }else if(username.getText().toString().equals(fusername) && password.getText().toString().equals(fpassword) ){
-                    Intent i = new Intent(getApplicationContext(),HomeActivity.class);
-                    startActivity(i);
-                }else{
-                    Toast.makeText(getApplicationContext(),"Login Gagal",Toast.LENGTH_LONG).show();
-                }
+                myRef.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        String dataAccount = String.valueOf(dataSnapshot.getChildrenCount());
+//                String dataAccount = String.valueOf("1");
+
+
+                        int jumlahAccount = Integer.valueOf(dataAccount);
+                        for (int i = 0; i < jumlahAccount; i++){
+                            String child = String.valueOf(i);
+
+                            String u = dataSnapshot.child(child).child("username").getValue(String.class);
+                            String p = dataSnapshot.child(child).child("password").getValue(String.class);
+
+
+
+//                            if(u.equals(username.getText().toString()) && p.equals(password.getText().toString())){
+//                                fusername = u;
+//                                fpassword = p;
+//                                break;
+//                            }
+
+                            if(username.getText().length()==0){
+                                Toast.makeText(getApplicationContext(),"Username tidak boleh Kosong",Toast.LENGTH_LONG).show();
+                            }else if(password.getText().length()==0){
+                                Toast.makeText(getApplicationContext(),"Password tidak boleh Kosong",Toast.LENGTH_LONG).show();
+                            }else if(username.getText().toString().equals(u) && password.getText().toString().equals(p)){
+                                Intent j = new Intent(getApplicationContext(),HomeActivity.class);
+                                startActivity(j);
+                                Toast.makeText(getApplicationContext(),"Login Berhasil!",Toast.LENGTH_SHORT).show();
+                            }else{
+                                Toast.makeText(getApplicationContext(),"Login Gagal!",Toast.LENGTH_LONG).show();
+                            }
+
+                        }
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
+//
             }
         });
 
