@@ -36,7 +36,7 @@ public class HomeActivity extends AppCompatActivity {
                 switch (item.getItemId()) {
                     case R.id.item_home:
                         loadFragment(homeFragment);
-                        Toast.makeText(getApplicationContext(), "Ini Home", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(getApplicationContext(), "Ini Home", Toast.LENGTH_SHORT).show();
 
 //                        DatabaseReference myRef = database.getReference("message");
 //
@@ -44,15 +44,15 @@ public class HomeActivity extends AppCompatActivity {
                         return true;
                     case R.id.item_transaksi:
                         loadFragment(transactionFragment);
-                        Toast.makeText(getApplicationContext(), "Ini Transaction", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(getApplicationContext(), "Ini Transaction", Toast.LENGTH_SHORT).show();
                         return true;
                     case R.id.item_history:
                         loadFragment(historyFragment);
-                        Toast.makeText(getApplicationContext(), "Ini Histori", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(getApplicationContext(), "Ini Histori", Toast.LENGTH_SHORT).show();
                         return true;
                     case R.id.item_account:
                         loadFragment(accountFragment);
-                        Toast.makeText(getApplicationContext(), "Ini Account", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(getApplicationContext(), "Ini Account", Toast.LENGTH_SHORT).show();
                         return true;
                 }
                 return false;

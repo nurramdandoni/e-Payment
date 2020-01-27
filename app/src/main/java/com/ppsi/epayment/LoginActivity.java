@@ -3,7 +3,9 @@ package com.ppsi.epayment;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -21,40 +23,44 @@ public class LoginActivity extends AppCompatActivity {
 
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference myRef = database.getReference("account");
-    private String fusername,fpassword;
-
+    private SharedPreferences sp;
+    private SharedPreferences.Editor editor;
+    private String indexAccount;
+    private String l,m;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+            setContentView(R.layout.activity_login);
 
-        final EditText username = findViewById(R.id.str_username);
-        final EditText password = findViewById(R.id.str_password);
+            final EditText username = findViewById(R.id.str_username);
+            final EditText password = findViewById(R.id.str_password);
+
+            sp = getSharedPreferences("Data_Login", Context.MODE_PRIVATE);
+            editor = sp.edit();
 
 //        private String fusername,fpassword;
 
-        Button b_login = findViewById(R.id.btn_login);
-        TextView signUp = findViewById(R.id.text_question);
+            Button b_login = findViewById(R.id.btn_login);
+            TextView signUp = findViewById(R.id.text_question);
 
 
-        b_login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+            b_login.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
 
-                myRef.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        String dataAccount = String.valueOf(dataSnapshot.getChildrenCount());
+                    myRef.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            String dataAccount = String.valueOf(dataSnapshot.getChildrenCount());
 //                String dataAccount = String.valueOf("1");
 
 
-                        int jumlahAccount = Integer.valueOf(dataAccount);
-                        for (int i = 0; i < jumlahAccount; i++){
-                            String child = String.valueOf(i);
+                            int jumlahAccount = Integer.valueOf(dataAccount);
+                            for (int i = 0; i < jumlahAccount; i++) {
+                                String child = String.valueOf(i);
 
-                            String u = dataSnapshot.child(child).child("username").getValue(String.class);
-                            String p = dataSnapshot.child(child).child("password").getValue(String.class);
-
+                                String u = dataSnapshot.child(child).child("username").getValue(String.class);
+                                String p = dataSnapshot.child(child).child("password").getValue(String.class);
 
 
 //                            if(u.equals(username.getText().toString()) && p.equals(password.getText().toString())){
@@ -63,38 +69,44 @@ public class LoginActivity extends AppCompatActivity {
 //                                break;
 //                            }
 
-                            if(username.getText().length()==0){
-                                Toast.makeText(getApplicationContext(),"Username tidak boleh Kosong",Toast.LENGTH_LONG).show();
-                            }else if(password.getText().length()==0){
-                                Toast.makeText(getApplicationContext(),"Password tidak boleh Kosong",Toast.LENGTH_LONG).show();
-                            }else if(username.getText().toString().equals(u) && password.getText().toString().equals(p)){
-                                Intent j = new Intent(getApplicationContext(),HomeActivity.class);
-                                startActivity(j);
-                                Toast.makeText(getApplicationContext(),"Login Berhasil!",Toast.LENGTH_SHORT).show();
-                            }else{
-                                Toast.makeText(getApplicationContext(),"Login Gagal!",Toast.LENGTH_LONG).show();
+                                if (username.getText().length() == 0) {
+                                    Toast.makeText(getApplicationContext(), "Username tidak boleh Kosong", Toast.LENGTH_LONG).show();
+                                } else if (password.getText().length() == 0) {
+                                    Toast.makeText(getApplicationContext(), "Password tidak boleh Kosong", Toast.LENGTH_LONG).show();
+                                } else if (username.getText().toString().equals(u) && password.getText().toString().equals(p)) {
+                                    editor.putString("index_acc_self", child);
+                                    editor.putString("longged", "yes");
+                                    editor.apply();
+                                    Intent j = new Intent(getApplicationContext(), HomeActivity.class);
+                                    startActivity(j);
+                                    Toast.makeText(getApplicationContext(), "Login Berhasil!", Toast.LENGTH_SHORT).show();
+                                    break;
+                                } else {
+//                                    Toast.makeText(getApplicationContext(), "Login Gagal!", Toast.LENGTH_LONG).show();
+                                }
+
                             }
 
                         }
 
-                    }
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                });
+                        }
+                    });
 
 //
-            }
-        });
+                }
+            });
 
-        signUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent j = new Intent(LoginActivity.this,SignupActivity.class);
-                startActivity(j);
-            }
-        });
+            signUp.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent j = new Intent(LoginActivity.this, SignupActivity.class);
+                    startActivity(j);
+                }
+            });
+
+
     }
 }
