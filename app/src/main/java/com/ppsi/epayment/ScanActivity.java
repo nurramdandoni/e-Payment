@@ -9,6 +9,7 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -70,14 +71,18 @@ public class ScanActivity extends AppCompatActivity {
                                         String valid = separated[0];
                                         String no_acc = separated[1];
                                         String value_send = separated[2];
+                                    Log.d("TESTING", u + " - " + no_acc);
                                     if(u.equals(no_acc)) {
                                         Intent j = new Intent(getApplicationContext(), ConfirmActivity.class);
                                         j.putExtra("acc", no_acc);
                                         j.putExtra("index_send", child);
                                         j.putExtra("value", value_send);
                                         startActivity(j);
+                                        break;
                                     }else{
                                         Toast.makeText(ScanActivity.this,"Failed!", Toast.LENGTH_SHORT).show();
+                                        Intent j = new Intent(getApplicationContext(), HomeActivity.class);
+                                        startActivity(j);
                                     }
                                 }
                             }
