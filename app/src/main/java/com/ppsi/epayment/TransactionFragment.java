@@ -48,6 +48,8 @@ public class TransactionFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getContext(),"Menu Receive Clicked",Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(getContext(),QRGeneratorActivity.class);
+                startActivity(i);
             }
         });
         btnDeposit.setOnClickListener(new View.OnClickListener() {

@@ -98,22 +98,33 @@ public class ConfirmActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // Toast.makeText(getApplicationContext(),sh, Toast.LENGTH_SHORT).show();
 
+                Boolean kondisi = false;
+
                 // awal last_balance_from - value;
-                int from_balance_update = Integer.valueOf(last_balance_from)-Integer.valueOf(value);
+                int from_balance_update = Integer.valueOf(last_balance_from)-Integer.valueOf(txtSendMoney.getText().toString());
                 // insert transaksi -value
-                from.child("transaction").child(next_index_from).setValue("-"+value);
+                from.child("transaction").child(next_index_from).setValue("-"+txtSendMoney.getText().toString());
                 // update saldo pengirim
                 from.child("balance").setValue(String.valueOf(from_balance_update));
 
                 // lalu last_lanace-to + value;
-                int to_balance_update = Integer.valueOf(last_balance_to)+Integer.valueOf(value);
+                int to_balance_update = Integer.valueOf(last_balance_to)+Integer.valueOf(txtSendMoney.getText().toString());
                 // insert transaksi +value
-                to.child("transaction").child(next_index_to).setValue("+"+value);
+                to.child("transaction").child(next_index_to).setValue("+"+txtSendMoney.getText().toString());
                 // update saldo penerima
                 to.child("balance").setValue(String.valueOf(to_balance_update));
 
-                Intent i = new Intent(getApplicationContext(),HomeActivity.class);
-                startActivity(i);
+                kondisi = true;
+
+                if(kondisi){
+                    Toast.makeText(ConfirmActivity.this,"Success!", Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(ConfirmActivity.this,checkLoginActivity.class);
+                    startActivity(i);
+                }else{
+                    Toast.makeText(ConfirmActivity.this,"Failed!", Toast.LENGTH_SHORT).show();
+
+                }
+
             }
         });
 
